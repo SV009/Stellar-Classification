@@ -1,51 +1,116 @@
-🌌 Stellar Classification Analysis
+# Stellar Classification Analysis
 
-A machine learning-based classification system for astronomical objects using Sloan Digital Sky Survey (SDSS) data. This project applies supervised models (Random Forest, AdaBoost, KNN, Decision Tree) and unsupervised K-Means clustering to classify stars, galaxies, and quasars. Random Forest achieved the highest test accuracy of 98%, supported by strong F1-scores and robustness. Includes EDA, model comparison, and visualizations for scientific and practical insights in astrophysical data mining.
-
----
-
-📌 Project Overview
-
-This project aims to classify celestial objects—stars, galaxies, and quasars—based on their spectral and positional data using machine learning. The dataset, sourced from SDSS via Kaggle, includes 100,000 observations with 18 attributes.
+A machine learning-based approach to classify celestial objects—stars, galaxies, and quasars—using Sloan Digital Sky Survey (SDSS) data.
+This project implements supervised learning (Random Forest, AdaBoost, KNN, Decision Tree) and unsupervised clustering (K-Means) to enable accurate and interpretable classification.
+The Random Forest model achieved the highest accuracy of 98%, supported by balanced precision, recall, and F1-scores.
 
 ---
 
-🔍 Exploratory Data Analysis (EDA)
+## Project Overview
 
-- Visualized class distribution using scatter plots of astronomical coordinates
-- Analyzed redshift vs. plate ID across classes
-- Explored feature relationships via correlation heatmaps and pairwise plots
+Stellar classification is a critical step in astronomy for understanding the composition, structure, and evolution of celestial bodies.
+This project applies machine learning techniques to 100,000 observations from SDSS (via Kaggle) to classify objects into:
+
+Star
+
+Galaxy
+
+Quasar (QSO)
+
+Beyond classification, the project also explores unsupervised clustering to identify natural groupings and data separability.
+
+---
+## Dataset
+Source: Kaggle – Stellar Classification Dataset (SDSS17)
+
+Size: 100,000 observations, 18 attributes (17 features + 1 class label)
+
+Attributes: Spectral features, positional coordinates (right ascension, declination), redshift, photometric data
+
+Classes: Star, Galaxy, Quasar
 
 ---
 
-🔧 Machine Learning Models
+## Exploratory Data Analysis (EDA)
 
-✅ Supervised Learning
-- **Random Forest Classifier** – Best performance (98% test accuracy)
-- **AdaBoost Classifier**
-- **K-Nearest Neighbors (KNN)**
-- **Decision Tree Classifier**
+Key insights from EDA:
 
-Each model was fine-tuned using Grid Search or Randomized Search and evaluated using precision, recall, and F1-score.
+Spatial Distribution: Stars are clustered locally, galaxies form a dense central cluster, quasars are more scattered.
 
-🔄 Unsupervised Learning
-- **K-Means Clustering**
-  - Applied with k=3 (based on elbow method)
-  - Visualized cluster separation using key spatial and spectral features
+Redshift Patterns:
+
+Stars → near zero redshift (close to Earth)
+
+Galaxies → lower redshift (relatively closer)
+
+Quasars → higher redshift (distant, fast-moving)
+
+Correlation Analysis: Certain spectral features exhibit strong correlations with object classification.
+
+---
+## Methodology
+
+### 1. Data Preprocessing
+
+Renamed columns for clarity
+
+Checked for missing/duplicate entries
+
+Standardized numerical features (StandardScaler) for distance-based algorithms
+
+### 2. Supervised Models
+
+K-Nearest Neighbors (KNN)
+
+Decision Tree Classifier
+
+Random Forest Classifier
+
+AdaBoost Classifier
+
+### 3. Unsupervised Model
+
+K-Means clustering with k = 3 (Elbow method)
+
+### 4. Evaluation Metrics
+
+Accuracy
+
+Precision, Recall, F1-Score
+
+Cross-validation scores for model reliability
+
 
 ---
 
-🏆 Results Summary
+## Results 
 
-| Model         | Accuracy | Notes                                 |
-|---------------|----------|----------------------------------------|
-| Random Forest | 98.00%   | Best overall performance               |
-| AdaBoost      | 97.30%   | High scores across classes             |
-| KNN           | 96.07%   | Good with proper scaling               |
-| Decision Tree | 96.65%   | Highly interpretable                   |
-| K-Means       | 94.1%*   | Purity score – useful for EDA          |
+### Supervised Learning Models
 
+| Model             | Accuracy   | Precision (Macro Avg) | Recall (Macro Avg) | F1-Score (Macro Avg) | Notes                               |
+| ----------------- | ---------- | --------------------- | ------------------ | -------------------- | ----------------------------------- |
+| **Random Forest** | **98.00%** | 0.98                  | 0.98               | 0.98                 | Best overall performance            |
+| AdaBoost          | 98.00%     | 0.98                  | 0.98               | 0.98                 | High performance across all classes |
+| Decision Tree     | 96.65%     | 0.97                  | 0.95               | 0.96                 | Highly interpretable                |
+| KNN               | 96.07%     | 0.96                  | 0.96               | 0.96                 | Good with scaling                   |
+
+
+### Unsupervised Learning (K-Means)
+
+| Metric         | Score      | Notes                                  |
+| -------------- | ---------- | -------------------------------------- |
+| SSE            | -487102.98 | Lower value indicates tighter clusters |
+| Purity Score\* | \~94.1%    | Indicates reasonable separation        |
+
+*Calculated by mapping cluster labels to true classes for reference.
 ---
+## Key Insights
+Random Forest and AdaBoost provided the best classification results, achieving perfect or near-perfect metrics for Stars.
 
+Decision Tree offers excellent interpretability with competitive accuracy.
+
+KNN performs well when features are scaled.
+
+K-Means clustering suggests that spatial and certain spectral features can reasonably separate object classes, though with some overlap.
 
 
